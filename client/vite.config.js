@@ -13,6 +13,7 @@ export default defineConfig({
       '@views': '/src/views',
       '@icons': '/src/icons',
       '@assets': '/src/assets',
+      '@hooks': '/src/hooks',
     },
   },
 })

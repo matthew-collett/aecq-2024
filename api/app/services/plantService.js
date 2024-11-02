@@ -11,7 +11,7 @@ import {
   getAllPlants,
 } from '#services/databaseService.js'
 
-export const createPlant = async user => await saveRecord('Plant', plant)
+export const createPlant = async plant => await saveRecord('Plant', plant)
 
 export const getPlantById = async id => await getRecord('Plant', id)
 

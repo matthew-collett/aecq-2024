@@ -7,20 +7,6 @@ const apiClient = axios.create({
   },
 })
 
-apiClient.interceptors.request.use(
-  config => {
-    const storedUser = localStorage.getItem('me')
-    if (storedUser) {
-      const { token } = JSON.parse(storedUser)
-      if (token) {
-        config.headers['Authorization'] = `Bearer ${token}`
-      }
-    }
-    return config
-  },
-  error => Promise.reject(error),
-)
-
 export const get = (path, params) => apiClient.get(path, { params })
 
 export const post = (path, data) => apiClient.post(path, data)

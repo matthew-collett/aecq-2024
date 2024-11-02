@@ -8,8 +8,7 @@ import {
 
 export const createPlant = async (req, res) => {
   try {
-    const { plantData } = req.body
-    const plant = await createPlantService(plantData)
+    const plant = await createPlantService(req.body)
     return res.status(201).json(plant)
   } catch (error) {
     console.error('Error creating plant: ', error)
