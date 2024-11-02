@@ -115,3 +115,8 @@ yarn run dev
 ```
 
 This will run both the client and the API server concurrently communicating with eachother in the foreground.
+
+### Uploading Data
+
+In order to use the applcation, you must upload an excel file in a specified format to upload the farmer data
+Find the excel file `data.xlsx` in the root of this repository.
