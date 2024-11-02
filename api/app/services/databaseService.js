@@ -171,13 +171,29 @@ export const deleteRecord = async (containerName, id) => {
   }
 }
 
-export const deleteAllPlants = async (containerName, plants) => {
+export const deleteAllItems = async containerName => {
+  const container = getContainer(containerName)
   try {
-    const deletePromises = plants.map(plant => deleteRecord(containerName, plant.id))
+    // Query to get all items in the container
+    const { resources: items } = await container.items.query('SELECT * FROM c').fetchAll()
+
+    if (!items || items.length === 0) {
+      console.log('No items found in the container to delete.')
+      return []
+    }
+
+    // Delete each item
+    const deletePromises = items.map(item => container.item(item.id, item.partitionKey).delete())
     const results = await Promise.all(deletePromises)
-    return results.filter(result => result !== null) // Filter out failed deletions
+
+    console.log(`Deleted ${results.length} items from the container.`)
+    return results
   } catch (error) {
-    console.error(`Error deleting all plants:`, error.message)
+    console.error('Error deleting all items:', error.message)
     return null
   }
+}
+
+export const deleteAllPlants = async () => {
+  await deleteAllItems('Plant')
 }

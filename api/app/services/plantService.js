@@ -22,4 +22,4 @@ export const deletePlantById = async id => await deleteRecord('Plant', id)
 
 export const updatePlantById = async (id, data) => await updateRecord('Plant', id, data)
 
-export const deletePlants = async plants => await deleteAllPlants('Plant', plants)
+export const deletePlants = async plants => await deleteAllPlants()
