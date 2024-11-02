@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import AppLayout from '@layouts/AppLayout'
 import ProtectedRoute from '@layouts/ProtectedRoute'
 import Dashboard from '@views/Dashboard'
+import Journal from '@views/Journal/Journal'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         {/* <Route element={<ProtectedRoute />}> */}
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Dashboard />} />
+          <Route path="journal" element={<Journal />} />
         </Route>
         {/* </Route> */}
       </Routes>
