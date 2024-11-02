@@ -11,15 +11,17 @@ const Sidebar = ({ navRoutes }) => {
 
   return (
     <nav
-      className={`${isExpanded} bg-primary text-light flex flex-col transition-all duration-300 ease-in-out relative z-50`}
+      className={`${isExpanded} bg-primary text-secondary flex flex-col transition-all duration-300 ease-in-out relative z-50`}
     >
       <Link to="/">
-        <div className="flex justify-center w-full h-header"></div>
+        <div className="flex justify-center w-full h-header bg-primary">
+          <img src="../../../public/favicon.svg" alt="Logo" className="h-full" />
+        </div>
       </Link>
-      <hr className="w-full border-slate-600" />
+      <hr className="w-full border-slate-600 bg-secondary text-primary" />
       <button
         onClick={toggleExpanded}
-        className={`absolute top-12 right-[-16px] bg-accent text-light rounded-full w-6 h-6 flex items-center justify-center cursor-pointer z-50`}
+        className={`absolute top-12 right-[-16px] bg-primary text-secondary rounded-full w-6 h-6 flex items-center justify-center cursor-pointer z-50`}
       >
         <FontAwesomeIcon className="text-xs" icon={expanded ? 'chevron-left' : 'chevron-right'} />
       </button>

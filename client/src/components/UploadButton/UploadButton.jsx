@@ -1,56 +1,56 @@
-import React, { useRef, useState } from 'react';
-import * as XLSX from 'xlsx';
+import React, { useRef, useState } from 'react'
+import * as XLSX from 'xlsx'
 
 const UploadButton = ({ className = '' }) => {
-  const fileInputRef = useRef(null);
-  const [excelData, setExcelData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const fileInputRef = useRef(null)
+  const [excelData, setExcelData] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   // Function to handle button click to trigger file input
   const handleButtonClick = () => {
-    fileInputRef.current.click();
-  };
+    fileInputRef.current.click()
+  }
 
   // Function to handle file change
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
+  const handleFileChange = event => {
+    const file = event.target.files[0]
     if (file && file.name.endsWith('.xlsx')) {
-      setIsLoading(true); // Set loading state when starting to read the file
-      readExcelFile(file);
+      setIsLoading(true) // Set loading state when starting to read the file
+      readExcelFile(file)
     } else {
-      alert('Please upload a valid Excel file (.xlsx)');
+      alert('Please upload a valid Excel file (.xlsx)')
     }
-  };
+  }
 
   // Function to read and parse the Excel file
-  const readExcelFile = (file) => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const data = new Uint8Array(e.target.result);
-      const workbook = XLSX.read(data, { type: 'array' });
-      const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-      const sheetData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-      setExcelData(sheetData);
-      setIsLoading(false); // Reset loading state after reading the file
-    };
-    reader.readAsArrayBuffer(file);
-  };
+  const readExcelFile = file => {
+    const reader = new FileReader()
+    reader.onload = e => {
+      const data = new Uint8Array(e.target.result)
+      const workbook = XLSX.read(data, { type: 'array' })
+      const worksheet = workbook.Sheets[workbook.SheetNames[0]]
+      const sheetData = XLSX.utils.sheet_to_json(worksheet, { header: 1 })
+      setExcelData(sheetData)
+      setIsLoading(false) // Reset loading state after reading the file
+    }
+    reader.readAsArrayBuffer(file)
+  }
 
   // Function to handle file removal
   const handleRemoveFile = () => {
-    setExcelData([]); // Clear the displayed data
-    fileInputRef.current.value = null; // Reset the file input value
-  };
+    setExcelData([]) // Clear the displayed data
+    fileInputRef.current.value = null // Reset the file input value
+  }
 
   return (
     <div>
       <button
         onClick={handleButtonClick}
-        className={`${isLoading ? 'bg-accent' : 'bg-primary'} rounded-md w-100 px-4 py-3 text-white hover:bg-accent transition-ease ${className}`}
+        className={`${isLoading ? 'bg-secondary' : 'bg-primary'} rounded-md w-100 px-4 py-3 text-white hover:bg-accent transition-ease ${className}`}
       >
-        {isLoading ? "Loading..." : "Upload Excel File"}
+        {isLoading ? 'Loading...' : 'Upload Excel File'}
       </button>
-      
+
       <input
         type="file"
         ref={fileInputRef}
@@ -84,9 +84,9 @@ const UploadButton = ({ className = '' }) => {
               ))}
             </tbody>
           </table>
-          
-          <button 
-            onClick={handleRemoveFile} 
+
+          <button
+            onClick={handleRemoveFile}
             className="mt-4 bg-red-500 text-white rounded-md px-4 py-2 hover:bg-red-600 transition-ease"
           >
             Remove File
@@ -94,7 +94,7 @@ const UploadButton = ({ className = '' }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default UploadButton;
+export default UploadButton

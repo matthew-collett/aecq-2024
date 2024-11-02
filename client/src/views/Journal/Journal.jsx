@@ -110,7 +110,7 @@ const Journal = () => {
 
       <button
         onClick={() => setShowForm(!showForm)}
-        className="bg-blue-500 text-white rounded-full p-2 mb-4"
+        className="bg-blue-500 bg-primary text-white rounded-full p-2 mb-4"
       >
         <FontAwesomeIcon icon={faPlus} /> {showForm ? 'Hide Form' : 'Add Entry'}
       </button>
