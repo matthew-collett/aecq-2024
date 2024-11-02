@@ -1,5 +1,7 @@
 export const navRoutes = {
   dashboard: { path: '/', icon: 'table-columns', label: 'Dashboard' },
+  prediction: { path: '/prediction', icon: 'bolt', label: 'Planning' },
+
 }
 
 export const routes = {
