@@ -1,9 +1,9 @@
 import express from 'express'
-
 import {
   createPlant,
   getPlant,
   listPlants,
+  listPlantsFilter,
   updatePlant,
   deletePlant,
 } from '#controllers/plantController.js'
@@ -15,6 +15,9 @@ router.post('/', createPlant)
 
 // GET /api/plant
 router.get('/', listPlants)
+
+// POST /api/plant/filter - Filter plants by multiple criteria
+router.post('/filter', listPlantsFilter)
 
 // GET /api/plant/:id
 router.get('/:id', getPlant)

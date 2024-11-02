@@ -1,14 +1,10 @@
 import express from 'express'
-
-import {} from '#controllers/userController.js'
+import { createUser, getUser, updateUser, deleteUser } from '#controllers/userController.js'
 
 const router = express.Router()
 
 // POST /api/user
 router.post('/', createUser)
-
-// GET /api/user
-router.get('/', listUsers)
 
 // GET /api/user/:id
 router.get('/:id', getUser)
