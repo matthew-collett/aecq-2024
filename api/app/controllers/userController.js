@@ -1,27 +1,10 @@
 import config from '#config'
-import Roles from '#constants/roles.js'
-import { inviteSchema, updateUserSchema } from '#schemas/users.js'
 import {
-  inviteUsersByEmail,
   getUserById,
   updateUserById,
   deleteUserById,
 } from '#services/usersService.js'
 
-export const inviteUsers = async (req, res) => {
-  const { error, value } = inviteSchema.validate(req.body)
-  if (error) {
-    return res.status(400).json({ message: error.details[0].message })
-  }
-
-  try {
-    await inviteUsersByEmail(value)
-    return res.status(200).json({ message: `${req.body.role} invitations sent successfully.` })
-  } catch (error) {
-    console.error('Error sending invites:', error)
-    return res.status(500).json({ message: 'Internal server error' })
-  }
-}
 
 export const getUser = async (req, res) => {
   const { id } = req.params

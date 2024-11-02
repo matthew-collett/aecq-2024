@@ -6,11 +6,7 @@ import {
   listPlants,
   updatePlant,
   deletePlant,
-} from '../controllers/plantController.js'
-
-import Roles from '#constants/roles.js'
-import { authJWT } from '#middleware/authMiddleware.js'
-import { authorizeRoles } from '#middleware/roleMiddleware.js'
+} from '#controllers/plantController.js'
 
 const router = express.Router()
 

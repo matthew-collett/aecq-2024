@@ -1,9 +1,4 @@
 import {
-  updateJournalEntrySchema,
-  journalEntrySchema,
-  listJournalEntrysQuerySchema,
-} from '#schemas/journalEntrys.js'
-import {
   getJournalEntryById,
   updateJournalEntryById,
   deleteJournalEntryById,
