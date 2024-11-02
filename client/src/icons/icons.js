@@ -17,6 +17,7 @@ import {
   faPlus,
   faTrashCan,
   faPenToSquare,
+  faNewspaper,
   faBolt,
 } from '@fortawesome/free-solid-svg-icons'
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons'
@@ -40,5 +41,6 @@ library.add(
   faPlus,
   faTrashCan,
   faPenToSquare,
+  faNewspaper,
   faBolt,
 )
