@@ -6,8 +6,8 @@ export default {
         header: '60px',
       },
       colors: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
+        primary: '#4CAF50',
+        secondary: '#795548',
         accent: 'var(--color-accent)',
         danger: 'var(--color-danger)',
         warning: 'var(--color-warning)',
