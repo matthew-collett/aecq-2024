@@ -9,9 +9,9 @@ import {
 
 export const createJournalEntry = async (req, res) => {
   try {
-    const user = req.user // Assuming user is attached to the request
+    const journalEntry = req.journal
     const journalData = req.body
-    const journalEntry = await createJournalService(user, journalData)
+    const journalEntry = await createJournalService(journalEntry)
     return res.status(201).json(journalEntry)
   } catch (error) {
     console.error('Error creating Journal Entry:', error)
