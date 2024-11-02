@@ -14,8 +14,9 @@ const Sidebar = ({ navRoutes }) => {
       className={`${isExpanded} bg-primary text-secondary flex flex-col transition-all duration-300 ease-in-out relative z-50`}
     >
       <Link to="/">
-        <div className="flex justify-center w-full h-header bg-primary">
+        <div className="flex justify-center items-center w-full h-header bg-primary">
           <img src="../../../public/favicon.svg" alt="Logo" className="h-full" />
+          {expanded && <span className="text-2xl font-logo">SeedMap</span>}
         </div>
       </Link>
       <hr className="w-full border-slate-600" />

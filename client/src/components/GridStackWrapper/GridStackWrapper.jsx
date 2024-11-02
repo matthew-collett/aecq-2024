@@ -71,7 +71,7 @@ const GridItem = ({ id, x, y, width, height, children, className = '' }) => {
       gs-w={width}
       gs-h={height}
     >
-      <div className="grid-stack-item-content bg-primary rounded-md">{children}</div>
+      <div className="grid-stack-item-content rounded-md">{children}</div>
     </div>
   )
 }

@@ -182,15 +182,17 @@ export const deleteAllItems = async containerName => {
       return []
     }
 
-    // Delete each item
-    const deletePromises = items.map(item => container.item(item.id, item.partitionKey).delete())
-    const results = await Promise.all(deletePromises)
+    // Delete each item - make sure to RETURN the delete promise
+    const deletePromises = items.map(
+      item => container.item(item.id, item.id).delete(), // Note: Some versions need both id and partitionKey
+    )
 
-    console.log(`Deleted ${results.length} items from the container.`)
-    return results
+    await Promise.all(deletePromises)
+    console.log(`Deleted ${items.length} items from the container.`)
+    return items.length
   } catch (error) {
     console.error('Error deleting all items:', error.message)
-    return null
+    throw error // Better to throw the error than return null
   }
 }
 

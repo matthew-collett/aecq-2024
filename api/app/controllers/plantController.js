@@ -75,10 +75,7 @@ export const deletePlant = async (req, res) => {
 
 export const deletePlants = async (req, res) => {
   try {
-    const deleted = await deletePlantsService()
-    if (!deleted) {
-      return res.status(404).json({ message: 'Plants not found' })
-    }
+    await deletePlantsService()
     return res.status(204).send()
   } catch (error) {
     console.error('Error deleting plant: ', error)

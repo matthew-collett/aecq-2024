@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { GridStackWrapper, GridItem } from '@components/GridStackWrapper'
 import UploadButton from '@components/UploadButton'
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Dashboard = () => {
   const [gridItems, setGridItems] = useState([])
@@ -86,6 +87,8 @@ const Dashboard = () => {
 
   const saveItemsToDatabase = async items => {
     try {
+      await axios.delete('http://localhost:3000/api/plant')
+
       const savePromises = items.map(item =>
         axios.post('http://localhost:3000/api/plant', {
           id: item.id,
@@ -120,6 +123,35 @@ const Dashboard = () => {
     }
   }
 
+  const handleClearFarm = async () => {
+    try {
+      setIsLoading(true)
+      await axios.delete('http://localhost:3000/api/plant')
+      setGridItems([])
+    } catch (error) {
+      console.error('Error clearing farm:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const getBackgroundColor = category => {
+    switch (category) {
+      case 'Legumes':
+        return 'bg-legumes'
+      case 'Leafy Vegetables':
+        return 'bg-leafy-vegetables'
+      case 'Solanaceous Crops':
+        return 'bg-solanaceous-crops'
+      case 'Root Vegetables':
+        return 'bg-root-vegetables'
+      case 'Cereals':
+        return 'bg-cereals'
+      default:
+        return 'bg-neutral' // Neutral fallback color
+    }
+  }
+
   const options = {
     column: 12,
     minRow: 2,
@@ -132,9 +164,20 @@ const Dashboard = () => {
     <div className="w-full h-full flex flex-col">
       <div className="flex w-full py-3 justify-between items-center">
         <h2 className="text-2xl">My Crops</h2>
-        <UploadButton onDataLoaded={handleDataLoaded} buttonText="Upload Crop Data" />
+        <div className="flex gap-3">
+          <button
+            onClick={handleClearFarm}
+            className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700 transition-colors"
+          >
+            <div className="flex items-center gap-2">
+              <FontAwesomeIcon className="text-xl text-white" icon="trash-can"></FontAwesomeIcon>
+              <span>Clear Farm</span>
+            </div>
+          </button>
+          <UploadButton onDataLoaded={handleDataLoaded} buttonText="Upload Crops" />
+        </div>
       </div>
-      <div className="bg-white rounded-md shadow flex-grow flex border border-primary">
+      <div className="bg-white rounded-md shadow flex-grow flex border border-gray-200 p-3">
         {isLoading ? (
           <div className="flex items-center justify-center w-full">Loading...</div>
         ) : gridItems.length > 0 ? (
@@ -147,7 +190,7 @@ const Dashboard = () => {
                 y={item.y}
                 width={item.width}
                 height={item.height}
-                className="flex justify-center items-center"
+                className={`flex justify-center items-center ${getBackgroundColor(item.id)} rounded border border-black`}
               >
                 <div className="p-2">
                   <h3 className="font-bold">{item.id}</h3>

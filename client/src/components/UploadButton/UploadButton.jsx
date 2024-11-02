@@ -1,5 +1,6 @@
 import React from 'react'
 import { useExcelUpload } from '@hooks/useExcelUpload'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const UploadButton = ({
   onDataLoaded,
@@ -22,7 +23,10 @@ const UploadButton = ({
         } rounded-md w-100 px-4 py-3 text-white hover:bg-accent transition-ease ${className}`}
         disabled={isLoading}
       >
-        {isLoading ? loadingText : buttonText}
+        <div className="flex gap-2 items-center">
+          <FontAwesomeIcon className="text-xl text-white" icon="plus"></FontAwesomeIcon>
+          <span>{isLoading ? loadingText : buttonText}</span>
+        </div>
       </button>
       <input
         type="file"
