@@ -32,6 +32,23 @@ const Prediction = () => {
     })
   }
 
+  const getBackgroundColor = category => {
+    switch (category) {
+      case 'Legumes':
+        return 'bg-legumes'
+      case 'Leafy Vegetables':
+        return 'bg-leafy-vegetables'
+      case 'Solanaceous Crops':
+        return 'bg-solanaceous-crops'
+      case 'Root Vegetables':
+        return 'bg-root-vegetables'
+      case 'Cereals':
+        return 'bg-cereals'
+      default:
+        return 'bg-neutral' // Neutral fallback color
+    }
+  }
+
   const rotateItemsCircularly = items => {
     if (items.length === 0) return items
 
@@ -70,7 +87,7 @@ const Prediction = () => {
       <div className="flex w-full py-3 justify-between items-center">
         <h2 className="text-2xl">Crop Rotation Prediction</h2>
       </div>
-      <div className="bg-white rounded-md shadow flex-grow flex border border-primary">
+      <div className="bg-white rounded-md shadow flex-grow flex border border-gray-200 p-3">
         {isLoading ? (
           <div className="flex items-center justify-center w-full">Loading...</div>
         ) : gridItems.length > 0 ? (
@@ -83,7 +100,7 @@ const Prediction = () => {
                 y={item.y}
                 width={item.width}
                 height={item.height}
-                className="flex justify-center items-center"
+                className={`flex justify-center items-center ${getBackgroundColor(item.id)} rounded border border-black`}
               >
                 <div className="p-2">
                   <h3 className="font-bold">{item.id}</h3>
