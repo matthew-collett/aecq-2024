@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "aecq-2024",
+  "version": "1.0.0",
+  "license": "ISC",
+  "workspaces": [
+    "client",
+    "api"
+  ],
+  "scripts": {
+    "client": "yarn workspace client dev",
+    "api": "yarn workspace api dev",
+    "dev": "concurrently --kill-others-on-fail \"yarn api\"  \"yarn client\"",
+    "preview": "yarn workspace client build && concurrently --kill-others-on-fail \"yarn workspace api start\"  \"yarn workspace client preview\"",
+    "prettier": "prettier --write \"**/*.{js,jsx,json,md}\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "prettier": "^3.3.3"
+  }
+}

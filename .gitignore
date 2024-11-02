@@ -1,0 +1,34 @@
+# Node.js
+node_modules/
+
+# Logs
+logs/
+*.log*
+*.gz
+
+# OS generated files
+.DS_Store
+
+# Build output
+build/
+dist/
+dist-ssr/
+*.local
+
+# Testing
+coverage/
+*.lcov
+# for running circleci job locally
+process.yml
+
+# Env files
+.env
+
+# Misc
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
