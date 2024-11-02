@@ -4,14 +4,12 @@ import {
   deletePlantById,
   createPlant as createPlantService,
   listPlants as listPlantsService,
-  listPlantsFilter as listPlantsFilterService,
-} from '#services/plantsService.js'
+} from '#services/plantService.js'
 
 export const createPlant = async (req, res) => {
   try {
-    const user = req.user // Assuming user is attached to the request
-    const plantData = req.body
-    const plant = await createPlantService(user, plantData)
+    const { plantData } = req.body
+    const plant = await createPlantService(plantData)
     return res.status(201).json(plant)
   } catch (error) {
     console.error('Error creating plant: ', error)
@@ -21,29 +19,10 @@ export const createPlant = async (req, res) => {
 
 export const listPlants = async (req, res) => {
   try {
-    const { field, value } = req.query
-    const plants = await listPlantsService(field, value)
-    if (!plants) {
-      return res.status(404).json({ message: 'No plants found' })
-    }
+    const plants = await listPlantsService()
     return res.status(200).json(plants)
   } catch (error) {
     console.error('Error fetching plants:', error)
-    return res.status(500).json({ message: 'Internal server error' })
-  }
-}
-
-export const listPlantsFilter = async (req, res) => {
-  try {
-    const userId = req.user?.id // Assuming user ID is attached to the request
-    const filters = req.body.filters
-    const filteredPlants = await listPlantsFilterService(userId, filters)
-    if (!filteredPlants || filteredPlants.length === 0) {
-      return res.status(404).json({ message: 'No plants found with the specified filters' })
-    }
-    return res.status(200).json(filteredPlants)
-  } catch (error) {
-    console.error('Error fetching plants with filters:', error)
     return res.status(500).json({ message: 'Internal server error' })
   }
 }

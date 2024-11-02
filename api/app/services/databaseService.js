@@ -133,6 +133,30 @@ export const listRecords = async (containerName, field, val) => {
   }
 }
 
+export const getAll = async containerName => {
+  const container = getContainer(containerName)
+  try {
+    const query = {
+      query: `SELECT * FROM c`,
+    }
+    const { resources } = await container.items
+      .query(query, { enableCrossPartitionQuery: true })
+      .fetchAll()
+    return resources.length > 0 ? resources : []
+  } catch (error) {
+    console.log(error.message)
+    return null
+  }
+}
+
+export const getAllPlants = async () => {
+  return await getAll('Plant')
+}
+
+export const getAllJournals = async () => {
+  return await getAll('JournalEntry')
+}
+
 export const deleteRecord = async (containerName, id) => {
   const container = getContainer(containerName)
   try {

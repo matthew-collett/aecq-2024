@@ -4,14 +4,13 @@ import {
   deleteJournalById,
   createJournal as createJournalService,
   listJournals as listJournalsService,
-  listJournalsFilter as listJournalsFilterService,
-} from '#services/journalEntryService.js'
+} from '#services/journalService.js'
 
 export const createJournalEntry = async (req, res) => {
+  const journalData = req.body
+
   try {
-    const user = req.user // Assuming user is attached to the request
-    const journalData = req.body
-    const journalEntry = await createJournalService(user, journalData)
+    const journalEntry = await createJournalService(journalData)
     return res.status(201).json(journalEntry)
   } catch (error) {
     console.error('Error creating Journal Entry:', error)
@@ -21,11 +20,7 @@ export const createJournalEntry = async (req, res) => {
 
 export const listJournalEntries = async (req, res) => {
   try {
-    const { field, value } = req.query
-    const journalEntries = await listJournalsService(field, value)
-    if (!journalEntries || journalEntries.length === 0) {
-      return res.status(404).json({ message: 'No Journal Entries found' })
-    }
+    const journalEntries = await listJournalsService()
     return res.status(200).json(journalEntries)
   } catch (error) {
     console.error('Error fetching Journal Entries:', error)
@@ -33,22 +28,22 @@ export const listJournalEntries = async (req, res) => {
   }
 }
 
-export const listJournalEntriesFilter = async (req, res) => {
-  try {
-    const userId = req.user?.id // Assuming user ID is attached to the request
-    const filters = req.body.filters
-    const filteredEntries = await listJournalsFilterService(userId, filters)
-    if (!filteredEntries || filteredEntries.length === 0) {
-      return res
-        .status(404)
-        .json({ message: 'No Journal Entries found with the specified filters' })
-    }
-    return res.status(200).json(filteredEntries)
-  } catch (error) {
-    console.error('Error fetching Journal Entries with filters:', error)
-    return res.status(500).json({ message: 'Internal server error' })
-  }
-}
+// export const listJournalEntriesFilter = async (req, res) => {
+//   try {
+//     const userId = req.user?.id // Assuming user ID is attached to the request
+//     const filters = req.body.filters
+//     const filteredEntries = await listJournalsFilterService(userId, filters)
+//     if (!filteredEntries || filteredEntries.length === 0) {
+//       return res
+//         .status(404)
+//         .json({ message: 'No Journal Entries found with the specified filters' })
+//     }
+//     return res.status(200).json(filteredEntries)
+//   } catch (error) {
+//     console.error('Error fetching Journal Entries with filters:', error)
+//     return res.status(500).json({ message: 'Internal server error' })
+//   }
+// }
 
 export const getJournalEntry = async (req, res) => {
   const { id } = req.params
