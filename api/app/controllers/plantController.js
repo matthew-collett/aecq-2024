@@ -4,6 +4,7 @@ import {
   deletePlantById,
   createPlant as createPlantService,
   listPlants as listPlantsService,
+  deletePlants as deletePlantsService,
 } from '#services/plantService.js'
 
 export const createPlant = async (req, res) => {
@@ -64,6 +65,21 @@ export const deletePlant = async (req, res) => {
     const deleted = await deletePlantById(id)
     if (!deleted) {
       return res.status(404).json({ message: 'Plant not found' })
+    }
+    return res.status(204).send()
+  } catch (error) {
+    console.error('Error deleting plant: ', error)
+    return res.status(500).json({ message: 'Internal server error' })
+  }
+}
+
+export const deletePlants = async (req, res) => {
+  const { plants } = req.params
+
+  try {
+    const deleted = await deletePlantsService(plants)
+    if (!deleted) {
+      return res.status(404).json({ message: 'Plants not found' })
     }
     return res.status(204).send()
   } catch (error) {

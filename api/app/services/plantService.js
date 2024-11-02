@@ -9,6 +9,7 @@ import {
   upsertRecord,
   deleteRecord,
   getAllPlants,
+  deleteAllPlants,
 } from '#services/databaseService.js'
 
 export const createPlant = async plant => await saveRecord('Plant', plant)
@@ -20,3 +21,5 @@ export const listPlants = async () => await getAllPlants()
 export const deletePlantById = async id => await deleteRecord('Plant', id)
 
 export const updatePlantById = async (id, data) => await updateRecord('Plant', id, data)
+
+export const deletePlants = async plants => await deleteAllPlants('Plant', plants)

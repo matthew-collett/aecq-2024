@@ -5,6 +5,7 @@ import {
   listPlants,
   updatePlant,
   deletePlant,
+  deletePlants,
 } from '#controllers/plantController.js'
 
 const router = express.Router()
@@ -26,5 +27,8 @@ router.put('/:id', updatePlant)
 
 // DELETE /api/plant/:id
 router.delete('/:id', deletePlant)
+
+// DELETE ALL /api/plant
+router.delete('/', deletePlants)
 
 export default router

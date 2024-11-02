@@ -170,3 +170,14 @@ export const deleteRecord = async (containerName, id) => {
     return null
   }
 }
+
+export const deleteAllPlants = async (containerName, plants) => {
+  try {
+    const deletePromises = plants.map(plant => deleteRecord(containerName, plant.id))
+    const results = await Promise.all(deletePromises)
+    return results.filter(result => result !== null) // Filter out failed deletions
+  } catch (error) {
+    console.error(`Error deleting all plants:`, error.message)
+    return null
+  }
+}
