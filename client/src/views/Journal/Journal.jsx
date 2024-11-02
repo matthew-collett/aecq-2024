@@ -159,7 +159,7 @@ const Journal = () => {
               ))}
             </div>
           )}
-          <button type="submit" className="bg-blue-500 text-white rounded-lg py-2">
+          <button type="submit" className="bg-accent text-white rounded-lg py-2">
             Add Entry
           </button>
         </form>
@@ -180,8 +180,9 @@ const Journal = () => {
                 >
                   {entry.title}
                 </h3>
+                <hr className="w-full mt-2 mb-2 bg-gray-500" />
                 <p className="text-sm text-gray-500">{entry.date}</p> {/* Display the date */}
-                <p>{entry.text}</p>
+                <p className="p-1">{entry.text}</p>
                 {entry.images.length > 0 && ( // Display all images for the entry
                   <div className="flex flex-wrap mt-2">
                     {entry.images.map((img, imgIndex) => (

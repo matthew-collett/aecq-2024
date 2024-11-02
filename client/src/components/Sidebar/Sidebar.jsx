@@ -18,7 +18,7 @@ const Sidebar = ({ navRoutes }) => {
           <img src="../../../public/favicon.svg" alt="Logo" className="h-full" />
         </div>
       </Link>
-      <hr className="w-full border-slate-600 bg-secondary text-primary" />
+      <hr className="w-full border-slate-600" />
       <button
         onClick={toggleExpanded}
         className={`absolute top-12 right-[-16px] bg-primary text-secondary rounded-full w-6 h-6 flex items-center justify-center cursor-pointer z-50`}
