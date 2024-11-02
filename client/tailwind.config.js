@@ -8,7 +8,7 @@ export default {
       colors: {
         primary: '#c8c0ab',
         secondary: '#6d685a',
-        accent: '#064804',
+        accent: '#484232',
         danger: 'var(--color-danger)',
         warning: 'var(--color-warning)',
         success: 'var(--color-success)',
