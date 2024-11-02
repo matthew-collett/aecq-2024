@@ -5,7 +5,7 @@ import ProtectedRoute from '@layouts/ProtectedRoute'
 import Dashboard from '@views/Dashboard'
 import Journal from '@views/Journal/Journal'
 import Prediction from './views/Prediction/Prediction'
-import CropInfo from './views/CropInfo/CropInfo'
+import CropInfo from '@views/CropInfo/CropInfo'
 
 const App = () => {
   return (
@@ -19,7 +19,7 @@ const App = () => {
           <Route index element={<Dashboard />} />
           <Route path="journal" element={<Journal />} />
           <Route path="/prediction" element={<Prediction />} />
-          <Route path="/CropInfo" element={<CropInfo />} />
+          <Route path="/cropinfo" element={<CropInfo />} />
         </Route>
         {/* </Route> */}
       </Routes>

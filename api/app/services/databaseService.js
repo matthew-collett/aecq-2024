@@ -183,7 +183,7 @@ export const deleteAllItems = async containerName => {
     }
 
     // Delete each item
-    const deletePromises = items.map(item => await deleteRecord(containerName, item.id))
+    const deletePromises = items.map(item => container.item(item.id, item.partitionKey).delete())
     const results = await Promise.all(deletePromises)
 
     console.log(`Deleted ${results.length} items from the container.`)

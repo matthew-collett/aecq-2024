@@ -52,14 +52,15 @@ const CropInfo = () => {
         padding: '20px',
         maxWidth: '800px',
         margin: 'auto',
-        fontFamily: 'Arial, sans-serif',
       }}
     >
-      <h1 style={{ textAlign: 'center' }}>Crop Rotation Plan</h1>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
         {rotationData.map((yearData, index) => (
           <YearSection key={index} {...yearData} />
         ))}
+      </div>
+      <div>
+        <p>Source: https://eos.com/blog/crop-rotation/</p>
       </div>
     </div>
   )
