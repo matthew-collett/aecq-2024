@@ -3,7 +3,6 @@ import {
   createJournalEntry,
   getJournalEntry,
   listJournalEntries,
-  listJournalEntriesFilter,
   updateJournalEntry,
   deleteJournalEntry,
 } from '#controllers/journalEntryController.js'
@@ -16,8 +15,8 @@ router.post('/', createJournalEntry)
 // GET /api/journal
 router.get('/', listJournalEntries)
 
-// POST /api/journal/filter - Filter journal entries by multiple criteria
-router.post('/filter', listJournalEntriesFilter)
+// // POST /api/journal/filter - Filter journal entries by multiple criteria
+// router.post('/filter', listJournalEntriesFilter)
 
 // GET /api/journal/:id
 router.get('/:id', getJournalEntry)

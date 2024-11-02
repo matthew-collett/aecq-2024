@@ -3,7 +3,7 @@ import express from 'express'
 
 import config from '#config'
 import plant from '#routes/plant.js'
-import user from '#routes/user.js'
+import journal from '#routes/journal.js'
 
 const app = express()
 
@@ -23,6 +23,6 @@ app.use(
 
 // routes
 app.use('/api/plant', plant)
-app.use('/api/user', user)
+app.use('/api/journal', journal)
 
 export default app

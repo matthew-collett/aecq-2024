@@ -7,13 +7,15 @@ import {
   updateRecord,
   upsertRecord,
   deleteRecord,
-} from '#services/DatabaseService.js'
+  getAllJournals,
+} from '#services/databaseService.js'
 
-export const createJournal = async user => await saveRecord('JournalEntry', plant)
+export const createJournal = async user =>
+  await saveRecord('JournalEntry', { id: plant.title, ...plant })
 
 export const getJournalById = async id => await getRecord('JournalEntry', id)
 
-export const listJournals = async id => await getRecord('JournalEntry', id)
+export const listJournals = async id => await getAllJournals()
 
 export const listJournalsFilter = async (userId, filters) =>
   await filterRecords('JournalEntry', userId, filters)
