@@ -1,7 +1,8 @@
 export const navRoutes = {
   dashboard: { path: '/', icon: 'table-columns', label: 'Dashboard' },
-  journal: { path: '/journal', icon: 'newspaper', label: 'Journal'},
+  journal: { path: '/journal', icon: 'newspaper', label: 'Journal' },
   prediction: { path: '/prediction', icon: 'bolt', label: 'Planning' },
+  cropinfo: { path: '/cropinfo', icon: 'plus', label: 'Crop Rotation Suggestions' },
 }
 
 export const routes = {
