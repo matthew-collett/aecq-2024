@@ -18,8 +18,8 @@ export const createJournalEntry = async (req, res) => {
   }
 
   try {
-    const clazz = await createNewJournalEntry(value)
-    return res.status(201).json(clazz)
+    const journalEntry = await createNewJournalEntry(value)
+    return res.status(201).json(journalEntry)
   } catch (error) {
     console.error('Error creating Journal Entry: ', error)
     return res.status(500).json({ message: 'Internal server error' })
