@@ -75,9 +75,39 @@ export const upsertRecord = async (containerName, record) => {
   const { resource } = await container.items.upsert(record)
   return resource
 }
-
+/*
 export const filterRecords = async (containerName, filterQuery) => {
   const container = getContainer(containerName)
+
+  try {
+    const { resources } = await container.items
+      .query(filterQuery, { enableCrossPartitionQuery: true })
+      .fetchAll()
+    return resources.length > 0 ? resources : null
+  } catch (error) {
+    console.log(error.message)
+    return null
+  }
+}
+  */
+
+// Input a user id and then a key value pair dictionary of filters
+export const filterRecords = async (containerName, userId, filters) => {
+  const container = getContainer(containerName)
+
+  const filterConditions = []
+  const parameters = []
+
+  filterConditions.push(`c.userId = @${userId}`)
+  for (const [key, value] of Object.entries(filters)) {
+    filterConditions.push(`c.${key} = @${key}`)
+    parameters.push({ name: `@${key}`, value })
+  }
+
+  const filterQuery = {
+    query: `SELECT * FROM c WHERE ${filterConditions.join(' AND ')}`,
+    parameters,
+  }
 
   try {
     const { resources } = await container.items
